@@ -1,0 +1,19 @@
+default:
+  # Dev mode
+  DEBUG: false
+  # Pathes
+  LOG_PATH: logs/bot.log
+  # General
+  TIMEZONE: US/Eastern
+  # Internal parameters
+  DATETIME_FORMAT: '%Y-%m-%d %H:%M:%S'
+
+production:
+  DEBUG: false
+  ADMINS:
+    - '@PLACEHOLDER'
+
+development:
+  DEBUG: true
+  ADMINS:
+    - '@PLACEHOLDER'
