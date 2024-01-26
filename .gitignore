@@ -5,6 +5,9 @@
 backup
 logs
 
+# Local data
+resources
+
 # Dev and local environment
 .vscode
 *.code-workspace

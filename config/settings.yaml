@@ -2,18 +2,25 @@ default:
   # Dev mode
   DEBUG: false
   # Pathes
-  LOG_PATH: logs/bot.log
-  # General
-  TIMEZONE: US/Eastern
+  DB_PATH:                        data/db  
+  LOG_PATH:                       logs/bot.log
   # Internal parameters
-  DATETIME_FORMAT: '%Y-%m-%d %H:%M:%S'
+  DATETIME_FORMAT:                '%Y-%m-%d %H:%M:%S'
+  # Notification message
+  TIMEZONE:                       US/Eastern
+  NOTIFICATION_HOUR:              7
+  NOTIFICATION_UPDATE_INTERVAL:   60*60                 # (1 hour) in seconds
+  NOTIFICATION_MESSAGE: >
+    PLACEHOLDER
+  ADMINS:
+    - '@PLACEHOLDER'
 
 production:
   DEBUG: false
-  ADMINS:
-    - '@PLACEHOLDER'
+  TOKEN:              SECRET_PLACEHOLDER
+  CLUB_CHANNEL:       PLACEHOLDER
 
 development:
   DEBUG: true
-  ADMINS:
-    - '@PLACEHOLDER'
+  TOKEN:              SECRET_PLACEHOLDER
+  CLUB_CHANNEL:       PLACEHOLDER  
