@@ -23,4 +23,5 @@ production:
 development:
   DEBUG: true
   TOKEN:              SECRET_PLACEHOLDER
-  CLUB_CHANNEL:       PLACEHOLDER  
+  CLUB_CHANNEL:       PLACEHOLDER
+  NOTIFICATION_UPDATE_INTERVAL:   20 # (seconds)
