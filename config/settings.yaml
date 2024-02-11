@@ -9,7 +9,7 @@ default:
   # Notification message
   TIMEZONE:                       US/Eastern
   NOTIFICATION_TIME:              '07:00:00'
-  NOTIFICATION_UPDATE_INTERVAL:   60*60                 # (1 hour) in seconds
+  NOTIFICATION_UPDATE_INTERVAL:   3600                 # (1 hour) in seconds
   NOTIFICATION_MESSAGE: >
     PLACEHOLDER
   ADMINS:
@@ -24,4 +24,3 @@ development:
   DEBUG: true
   TOKEN:              SECRET_PLACEHOLDER
   CLUB_CHANNEL:       PLACEHOLDER
-  NOTIFICATION_UPDATE_INTERVAL:   20 # (seconds)
