@@ -4,6 +4,7 @@
 # App data
 backup
 logs
+data
 
 # Local data
 resources

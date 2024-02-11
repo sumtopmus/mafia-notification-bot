@@ -11,7 +11,7 @@ async def post_init(app: Application) -> None:
     utils.log('post_init')
     app.bot_data.setdefault(settings.CLUB_CHANNEL, {})    
     # TODO: Start the routines.
-    utils.log('notifications_on')
+    utils.log('post_init_notifications_on')
     notify.notifications_on(app)
 
 

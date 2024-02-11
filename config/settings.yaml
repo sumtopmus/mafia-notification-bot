@@ -8,7 +8,7 @@ default:
   DATETIME_FORMAT:                '%Y-%m-%d %H:%M:%S'
   # Notification message
   TIMEZONE:                       US/Eastern
-  NOTIFICATION_HOUR:              7
+  NOTIFICATION_TIME:              '07:00:00'
   NOTIFICATION_UPDATE_INTERVAL:   60*60                 # (1 hour) in seconds
   NOTIFICATION_MESSAGE: >
     PLACEHOLDER

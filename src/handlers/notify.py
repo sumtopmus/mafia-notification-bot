@@ -46,14 +46,14 @@ def notifications_on(app: Application) -> None:
     if not app.job_queue.get_jobs_by_name(NOTIFICATION_JOB_NAME):
         app.job_queue.run_daily(
             notify,
-            time=time(hour=settings.NOTIFICATION_HOUR),
+            time=time.fromisoformat(settings.NOTIFICATION_TIME),
             name=NOTIFICATION_JOB_NAME)
-        utils.log('notificatiion_job_added')
+        utils.log('notification_job_added')
     if not app.job_queue.get_jobs_by_name(NOTIFICATION_UPDATE_JOB_NAME):
         app.job_queue.run_repeating(
             notification_update,
             settings.NOTIFICATION_UPDATE_INTERVAL,
-            first=time(hour=settings.NOTIFICATION_HOUR),
+            first=time.fromisoformat(settings.NOTIFICATION_TIME),
             name=NOTIFICATION_UPDATE_JOB_NAME)
         utils.log('notification_update_job_added')   
 
@@ -69,7 +69,7 @@ async def notify(context: ContextTypes.DEFAULT_TYPE) -> None:
     """Send notification about the game event."""
     utils.log('notify')
     event = process_nearest_event(fetch_events())
-    if not event or event.event_id in context.bot_data[settings.CLUB_CHANNEL]:
+    if not event or event.event_id in context.bot_data[settings.CLUB_CHANNEL] or event.canceled:
         return
     utils.log('send_notification_message')
     bot_message = await context.bot.send_photo(

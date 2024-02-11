@@ -8,7 +8,7 @@ class Event:
         self.title = event['name']
         self.datetime = datetime.fromtimestamp(event['timestamp'])
         self.duration = event['duration'] / 3600
-        self.canceled = 'canceled' in event
+        self.canceled = event.get('canceled', 'false')
 
     def get_notification_message(self) -> str:
         return settings.NOTIFICATION_MESSAGE.format(

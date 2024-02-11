@@ -3,7 +3,7 @@
 run: clean-cache
 	@ENV_FOR_DYNACONF=production python src/main.py
 
-debug: clean-cache clean-logs
+debug: clean-cache clean-logs clean-data
 	@python src/main.py
 
 clean-cache:

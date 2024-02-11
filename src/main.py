@@ -11,7 +11,7 @@ import init
 def main() -> None:
     """Main program to run."""
     # Create directory tree structure.
-    for path in [settings.LOG_PATH]:
+    for path in [settings.LOG_PATH, settings.DB_PATH]:
         if not os.path.exists(os.path.dirname(path)):
             os.makedirs(os.path.dirname(path))
 
