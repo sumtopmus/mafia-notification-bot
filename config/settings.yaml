@@ -10,6 +10,7 @@ default:
   TIMEZONE:                       US/Eastern
   NOTIFICATION_TIME:              '07:00:00'
   NOTIFICATION_UPDATE_INTERVAL:   3600                 # (1 hour) in seconds
+  INITIAL_NOTIFICATION_DELAY:     5                    # seconds from now (start)
   NOTIFICATION_MESSAGE: >
     PLACEHOLDER
   ADMINS:
