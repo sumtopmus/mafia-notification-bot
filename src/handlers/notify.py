@@ -43,17 +43,20 @@ def notifications_on(_: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 def notifications_on(app: Application) -> None:
     """Switch notifications on."""
     utils.log('notifications_on')
+    notification_time = time.fromisoformat(settings.NOTIFICATION_TIME)
     if not app.job_queue.get_jobs_by_name(NOTIFICATION_JOB_NAME):
         app.job_queue.run_daily(
             notify,
-            time=time.fromisoformat(settings.NOTIFICATION_TIME),
+            time=notification_time,
             name=NOTIFICATION_JOB_NAME)
         utils.log('notification_job_added')
+    notification_update_interval = timedelta(seconds=settings.NOTIFICATION_UPDATE_INTERVAL)
+    notification_update_datetime = datetime.combine(datetime.today(), notification_time) + notification_update_interval
     if not app.job_queue.get_jobs_by_name(NOTIFICATION_UPDATE_JOB_NAME):
         app.job_queue.run_repeating(
             notification_update,
-            settings.NOTIFICATION_UPDATE_INTERVAL,
-            first=time.fromisoformat(settings.NOTIFICATION_TIME),
+            interval=notification_update_interval,
+            first=notification_update_datetime.time(),
             name=NOTIFICATION_UPDATE_JOB_NAME)
         utils.log('notification_update_job_added')   
 
