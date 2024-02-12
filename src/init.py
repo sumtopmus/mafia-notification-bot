@@ -1,7 +1,7 @@
 from dynaconf import settings
 from telegram.ext import Application
 
-from handlers import debug, error, info
+from handlers import debug, error, info, upload
 from handlers import notify
 import utils
 
@@ -19,7 +19,7 @@ def add_handlers(app: Application) -> None:
     # Error handler.
     app.add_error_handler(error.handler)
     # Debug commands.
-    for module in [debug, info]:
+    for module in [debug, info, upload]:
         app.add_handlers(module.create_handlers())
     # Chat handling.
     for module in [notify]:
