@@ -1,6 +1,7 @@
-from datetime import datetime, time, timedelta
-from dynaconf import settings
+from datetime import datetime
 from format import clock
+
+from config import settings
 
 
 class Event:

@@ -1,8 +1,8 @@
-from dynaconf import settings
 import logging
 from telegram import Update
 from telegram.ext import CommandHandler, ContextTypes, filters
 
+from config import settings
 import utils
 
 

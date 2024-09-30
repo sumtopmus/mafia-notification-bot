@@ -26,6 +26,7 @@ token = 'SECRET_PLACEHOLDER'
 
 [dev]
 debug = true
+time_offset = 10            # in seconds
 conversation_timeout = 30   # in seconds
 
 club_channel = '@PLACEHOLDER'

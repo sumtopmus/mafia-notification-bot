@@ -1,10 +1,9 @@
-from dynaconf import settings
-import logging
 import os
 import pytz
 from telegram.constants import ParseMode
 from telegram.ext import Application, Defaults, PicklePersistence
 
+from config import settings
 import init
 
 

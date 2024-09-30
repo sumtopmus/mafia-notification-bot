@@ -1,13 +1,11 @@
-# coding=UTF-8
-
 from datetime import datetime, time, timedelta
-from dynaconf import settings
 import requests
 from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes, filters
 
-import utils
+from config import settings
 from model import event
+import utils
 
 
 INITIAL_NOTIFICATION_JOB_NAME = "initial_game_night_notification"

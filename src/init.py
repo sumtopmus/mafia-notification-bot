@@ -1,9 +1,9 @@
-from dynaconf import settings
 import logging
 from telegram.ext import Application
 from telegram.warnings import PTBUserWarning
 from warnings import filterwarnings
 
+from config import settings
 import handlers
 import utils
 

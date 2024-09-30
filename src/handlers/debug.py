@@ -1,8 +1,8 @@
-from dynaconf import settings
 import logging
 from telegram import Update
 from telegram.ext import CommandHandler, ContextTypes, filters
 
+from config import settings
 import utils
 
 
@@ -18,6 +18,8 @@ async def debug_on(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Switch to the debug mode."""
     settings.DEBUG = True
     logging.getLogger(__name__).setLevel(logging.DEBUG)
+    logging.getLogger("httpx").setLevel(logging.INFO)
+    logging.getLogger("apscheduler").setLevel(logging.INFO)
     utils.log("debug_on")
 
 
@@ -26,3 +28,5 @@ async def debug_off(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     utils.log("debug_off")
     settings.DEBUG = False
     logging.getLogger(__name__).setLevel(logging.INFO)
+    logging.getLogger("httpx").setLevel(logging.WARNING)
+    logging.getLogger("apscheduler").setLevel(logging.WARNING)
