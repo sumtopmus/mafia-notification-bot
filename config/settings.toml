@@ -7,7 +7,6 @@ timezone = 'US/Eastern'
 # Behavior
 notification_time = '07:00:00'
 notification_update_interval = 3600  # 1 hour (in seconds)
-initial_notification_delay = 5       # seconds from now (start)
 notification_message = 'PLACEHOLDER'
 # Internal parameters
 date_format = '%Y-%m-%d'
@@ -26,7 +25,7 @@ token = 'SECRET_PLACEHOLDER'
 
 [dev]
 debug = true
-time_offset = 10            # in seconds
+time_offset = 5             # in seconds
 conversation_timeout = 30   # in seconds
 
 club_channel = '@PLACEHOLDER'

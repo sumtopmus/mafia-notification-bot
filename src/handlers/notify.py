@@ -8,7 +8,6 @@ from model import event
 import utils
 
 
-INITIAL_NOTIFICATION_JOB_NAME = "initial_game_night_notification"
 NOTIFICATION_JOB_NAME = "game_night_notification"
 NOTIFICATION_UPDATE_JOB_NAME = "game_night_notification_update"
 MR_EVENTS_URL = "https://mafiaratings.com/api/get/events.php"
@@ -42,13 +41,6 @@ def notifications_on(_: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 def notifications_on(app: Application) -> None:
     """Switch notifications on."""
     utils.log("notifications_on")
-    if not app.job_queue.get_jobs_by_name(INITIAL_NOTIFICATION_JOB_NAME):
-        app.job_queue.run_once(
-            notify,
-            when=settings.INITIAL_NOTIFICATION_DELAY,
-            name=INITIAL_NOTIFICATION_JOB_NAME,
-        )
-        utils.log("initial_notification_job_added")
     notification_time = time.fromisoformat(settings.NOTIFICATION_TIME)
     if not app.job_queue.get_jobs_by_name(NOTIFICATION_JOB_NAME):
         app.job_queue.run_daily(
