@@ -8,10 +8,10 @@ import utils
 
 async def post_init(app: Application) -> None:
     """Initializes bot with data and its tasks."""
-    utils.log('post_init')
-    app.bot_data.setdefault(settings.CLUB_CHANNEL, {})    
+    utils.log("post_init")
+    app.bot_data.setdefault(settings.CLUB_CHANNEL, {})
     # TODO: Start the routines.
-    utils.log('post_init_notifications_on')
+    utils.log("post_init_notifications_on")
     notify.notifications_on(app)
 
 
