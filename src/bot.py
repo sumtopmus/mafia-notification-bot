@@ -15,13 +15,8 @@ def main() -> None:
         if not os.path.exists(os.path.dirname(path)):
             os.makedirs(os.path.dirname(path))
 
-    # Set up logging and debugging.
-    logging_level = logging.DEBUG if settings.DEBUG else logging.INFO
-    logging.basicConfig(
-        filename=settings.LOG_PATH,
-        level=logging_level,
-        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    )
+    # Set up logging
+    init.setup_logging()
 
     # Setup the bot.
     defaults = Defaults(
