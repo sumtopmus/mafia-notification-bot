@@ -34,6 +34,6 @@ async def post_init(app: Application) -> None:
 
 def add_handlers(app: Application) -> None:
     # Error handler
-    app.add_error_handler(handlers.error)
+    app.add_error_handler(handlers.error_handler)
     # Debug & business logic handlers
     app.add_handlers(handlers.all)
