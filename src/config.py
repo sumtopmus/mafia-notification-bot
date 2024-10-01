@@ -12,3 +12,6 @@ if settings.current_env == "dev":
     settings.NOTIFICATION_TIME = (
         (datetime.now() + timedelta(seconds=settings.TIME_OFFSET)).time().isoformat()
     )
+    settings.POLL_TIME = (
+        (datetime.now() + timedelta(seconds=settings.TIME_OFFSET)).time().isoformat()
+    )

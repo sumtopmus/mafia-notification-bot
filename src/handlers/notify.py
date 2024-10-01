@@ -46,7 +46,7 @@ def notifications_on(app: Application) -> None:
         app.job_queue.run_daily(
             notify, time=notification_time, name=NOTIFICATION_JOB_NAME
         )
-        utils.log("notification_job_added")
+        utils.log("notification job added")
     notification_update_interval = timedelta(
         seconds=settings.NOTIFICATION_UPDATE_INTERVAL
     )
@@ -61,7 +61,7 @@ def notifications_on(app: Application) -> None:
             first=notification_update_datetime.time(),
             name=NOTIFICATION_UPDATE_JOB_NAME,
         )
-        utils.log("notification_update_job_added")
+        utils.log("notification update job added")
 
 
 def notifications_off(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
