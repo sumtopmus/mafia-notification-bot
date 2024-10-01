@@ -27,6 +27,7 @@ def setup_logging() -> None:
 async def post_init(app: Application) -> None:
     """Initializes bot with data and its tasks."""
     app.bot_data.setdefault(settings.CLUB_CHANNEL, {})
+    app.bot_data.setdefault("players", {})
     handlers.notify.notifications_on(app)
     handlers.poll.polling_on(app)
 
