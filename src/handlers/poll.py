@@ -95,6 +95,11 @@ async def poll_public(context: ContextTypes.DEFAULT_TYPE) -> None:
         is_anonymous=False,
         allows_multiple_answers=True,
     )
+    if "poll_public" in context.bot_data:
+        await context.bot.unpin_chat_message(
+            settings.CLUB_CHAT_ID, context.bot_data["poll_public"]
+        )
+    await context.bot.pin_chat_message(settings.CLUB_CHAT_ID, poll.id)
     context.bot_data["poll_public"] = poll.id
 
 
@@ -113,4 +118,9 @@ async def poll_private(context: ContextTypes.DEFAULT_TYPE) -> None:
         is_anonymous=False,
         allows_multiple_answers=True,
     )
+    if "poll_private" in context.bot_data:
+        await context.bot.unpin_chat_message(
+            settings.PRIVATE_CLUB_CHAT_ID, context.bot_data["poll_private"]
+        )
+    await context.bot.pin_chat_message(settings.PRIVATE_CLUB_CHAT_ID, poll.id)
     context.bot_data["poll_private"] = poll.id
