@@ -6,13 +6,14 @@ log_path = 'logs/bot.log'
 timezone = 'US/Eastern'
 # Behavior
 notification_time = '07:00:00'
-notification_update_interval = 3600  # 1 hour (in seconds)
+notification_update_interval = 3600     # 1 hour (in seconds)
 notification_message = 'PLACEHOLDER'
-poll_time = '07:00:00'
+poll_time = '09:00:00'
 # Internal parameters
 date_format = '%Y-%m-%d'
 datetime_format = '%Y-%m-%d %H:%M:%S'
-conversation_timeout = 900  # 15 minutes (in seconds)
+conversation_timeout = 900              # 15 minutes (in seconds)
+welcome_timeout = 86400                 # 1 day (in seconds)
 
 admins = ['@PLACEHOLDER']
 
@@ -28,10 +29,12 @@ token = 'SECRET_PLACEHOLDER'
 debug = true
 time_offset = 5             # in seconds
 conversation_timeout = 30   # in seconds
+welcome_timeout = 30        # in seconds
 
 club_channel = '@PLACEHOLDER'
 club_chat_id = 'PLACEHOLDER'
 private_club_chat_id = 'PLACEHOLDER'
+chat_invite_link = 'PLACEHOLDER'
 notification_image = 'PLACEHOLDER'
 
 token = 'SECRET_PLACEHOLDER'

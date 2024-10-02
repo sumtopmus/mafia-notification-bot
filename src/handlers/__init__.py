@@ -4,13 +4,14 @@ from . import debug
 from . import nickname
 from . import notify
 from . import poll
+from . import welcome
 
 
 __all__ = ["all", "error_handler", "notify", "poll"]
 
 # Business logic handlers
 logic_handlers = []
-modules = [nickname, notify, poll]
+modules = [nickname, notify, poll, welcome]
 for module in modules:
     logic_handlers.extend(module.create_handlers())
 # All handlers (debug + logic)

@@ -8,10 +8,9 @@ from telegram.ext import (
     MessageHandler,
     TypeHandler,
 )
-from telegram.helpers import escape_markdown
-from typing import Dict
 
 from config import settings
+from model.utils import list_nicknames
 from utils import log
 
 
@@ -44,7 +43,7 @@ def create_handlers() -> list:
 async def on_nickname(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """When user uses /nickname command."""
     log("on_nickname")
-    message = escape_markdown("Будь ласка, введіть ваш нік.", version=2)
+    message = "Будь ласка, введіть ваш нік."
     await update.effective_user.send_message(message)
     return State.AWAITING
 
@@ -58,13 +57,11 @@ async def add_or_change_nickname(
     nickname = update.message.text
     user_with_this_nickname = list_nicknames(context).get(nickname, user.id)
     if user_with_this_nickname != user.id:
-        message = escape_markdown(
-            "Цей нік вже зайнятий. Будь ласка, виберіть інший.", version=2
-        )
+        message = "Цей нік вже зайнятий. Будь ласка, виберіть інший."
         await user.send_message(message)
         return State.AWAITING
     context.bot_data["players"].setdefault(user.id, {})["nickname"] = nickname
-    message = escape_markdown(f"Вітаю, {nickname}!", version=2)
+    message = f"Вітаю, {nickname}!"
     await update.effective_user.send_message(message)
     return ConversationHandler.END
 
@@ -72,7 +69,7 @@ async def add_or_change_nickname(
 async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE) -> State:
     """When a user cancels the conversation."""
     log("cancel")
-    message = escape_markdown("Операцію скасовано.", version=2)
+    message = "Операцію скасовано."
     await update.effective_user.send_message(message)
     return ConversationHandler.END
 
@@ -80,13 +77,6 @@ async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE) -> State:
 async def timeout(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """When the conversation timepout is exceeded."""
     log("timeout")
-    message = escape_markdown("Запит скасовано автоматично через таймаут.", version=2)
+    message = "Запит скасовано автоматично через таймаут."
     await update.effective_user.send_message(message)
     return ConversationHandler.END
-
-
-def list_nicknames(context: ContextTypes.DEFAULT_TYPE) -> Dict[str, int]:
-    """List all nicknames."""
-    return {
-        player["nickname"]: id for id, player in context.bot_data["players"].items()
-    }

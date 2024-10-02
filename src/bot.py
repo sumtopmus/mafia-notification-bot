@@ -19,7 +19,7 @@ def main() -> None:
 
     # Setup the bot.
     defaults = Defaults(
-        parse_mode=ParseMode.MARKDOWN_V2, tzinfo=pytz.timezone(settings.TIMEZONE)
+        parse_mode=ParseMode.MARKDOWN, tzinfo=pytz.timezone(settings.TIMEZONE)
     )
     persistence = PicklePersistence(filepath=settings.DB_PATH, single_file=False)
     app = (
