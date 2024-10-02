@@ -13,7 +13,7 @@ resources
 .vscode
 *.code-workspace
 **/*.local*
-debug
+/debug
 
 # macOS environment
 .DS_Store
