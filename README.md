@@ -1,2 +1,2 @@
 # mafia-bot
-Telegram bot that sends notifications about the game nights from mafiaratings.com.
+Telegram bot to manage the game club (channel + public/private chats).
