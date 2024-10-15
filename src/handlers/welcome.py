@@ -58,10 +58,6 @@ def create_handlers() -> list:
     return [
         ConversationHandler(
             entry_points=[
-                ChatMemberHandler(
-                    chat_member_status_changed,
-                    chat_member_types=ChatMemberHandler.CHAT_MEMBER,
-                ),
                 MessageHandler(
                     filters.Chat(settings.CLUB_CHAT_ID)
                     & filters.StatusUpdate.NEW_CHAT_MEMBERS,
@@ -94,35 +90,6 @@ def create_handlers() -> list:
             persistent=True,
         )
     ]
-
-
-def user_status(update: Update) -> UserStatus:
-    """Returns the user status."""
-    if not update.chat_member:
-        return UserStatus.OTHER
-    if (
-        update.chat_member.old_chat_member.status
-        and update.chat_member.old_chat_member.status != ChatMemberStatus.LEFT
-    ):
-        return UserStatus.OTHER
-    if update.chat_member.new_chat_member.status == ChatMemberStatus.MEMBER:
-        return UserStatus.NEW_MEMBER
-    return UserStatus.OTHER
-
-
-async def chat_member_status_changed(
-    update: Update, context: ContextTypes.DEFAULT_TYPE
-) -> State:
-    """When a chat member's status is changed."""
-    utils.log("chat_member_status_changed")
-    user = update.chat_member.new_chat_member.user
-    old_status = utils.nested_getattr(update, "chat_member.old_chat_member.status")
-    new_status = utils.nested_getattr(update, "chat_member.new_chat_member.status")
-    utils.log(
-        f'{utils.user_repr(user)} changed status from "{old_status}" to "{new_status}"',
-        logging.INFO,
-    )
-    return ConversationHandler.END
 
 
 async def left(update: Update, context: ContextTypes.DEFAULT_TYPE) -> State:
@@ -308,7 +275,10 @@ async def timeout(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "нажавши /join."
     )
     await user.send_message(message)
-    await user.decline_join_request(settings.CLUB_CHAT_ID)
+    try:
+        await user.decline_join_request(settings.CLUB_CHAT_ID)
+    except TelegramError as e:
+        utils.log(f"No join requests found: {e}")
     utils.log(
         f"{utils.user_repr(user)} timed out, the request is declined", logging.INFO
     )
