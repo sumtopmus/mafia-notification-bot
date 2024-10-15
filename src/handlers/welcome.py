@@ -143,7 +143,6 @@ async def join(update: Update, context: ContextTypes.DEFAULT_TYPE) -> State:
                 "Ви тільки подивіться, хто до нас повернувся! Аплодисменти!\n\n"
                 f"Зустрічайте – {titled_mention} ({user.mention_markdown()})!"
             )
-            utils.log(message)
             await context.bot.sendMessage(
                 chat_id=update.message.chat.id,
                 text=message,
@@ -261,7 +260,7 @@ async def set_title(update: Update, context: CallbackContext) -> State:
         [InlineKeyboardButton(text="Перейти до чату", url=settings.CHAT_INVITE_LINK)]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    await user.send_message(message, reply_markup=reply_markup)
+    await update.callback_query.edit_message_text(message, reply_markup=reply_markup)
     return ConversationHandler.END
 
 
